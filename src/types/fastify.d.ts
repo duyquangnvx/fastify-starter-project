@@ -5,5 +5,3 @@ declare module 'fastify' {
     config: EnvConfig;
   }
 }
-
-export {};

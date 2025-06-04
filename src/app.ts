@@ -1,8 +1,8 @@
 import Fastify, { FastifyInstance } from 'fastify';
 import fastifyEnv from '@fastify/env';
 import { envSchema } from './config/env';
-import routes from './routes';
 import plugins from './plugins';
+import routes from './routes';
 
 export async function buildApp(): Promise<FastifyInstance> {
     const app = Fastify({ logger: true });

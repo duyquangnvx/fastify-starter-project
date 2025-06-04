@@ -1,9 +1,11 @@
 import { FastifyInstance } from 'fastify';
+import fp from 'fastify-plugin';
 import apiRoutes from './api.routes';
 import userRoutes from './user.routes';
 
-export default async function routes(app: FastifyInstance) {
-    // Register routers
-    await app.register(apiRoutes, { prefix: '/api' });
-    // await app.register(userRoutes, { prefix: '/users' });
-};
+const routes = fp(async (fastify: FastifyInstance) => {
+    await fastify.register(apiRoutes);
+    await fastify.register(userRoutes);
+});
+
+export default routes;

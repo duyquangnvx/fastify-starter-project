@@ -1,9 +1,10 @@
 
 import { FastifyInstance } from 'fastify';
+import fp from 'fastify-plugin';
 import swagger from '@fastify/swagger';
 import swaggerUi from '@fastify/swagger-ui';
 
-export default async function swaggerPlugin(app: FastifyInstance) {
+const swaggerPlugin = fp(async (app: FastifyInstance) => {
     // Register swagger
     await app.register(swagger, {
         swagger: {
@@ -36,4 +37,6 @@ export default async function swaggerPlugin(app: FastifyInstance) {
         },
         transformSpecificationClone: true
     });
-};
+});
+
+export default swaggerPlugin;

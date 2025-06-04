@@ -1,9 +1,9 @@
 
 import { FastifyInstance } from 'fastify';
+import fp from 'fastify-plugin';
 import cors from '@fastify/cors';
 
-export default async function corsPlugin(app: FastifyInstance) {
-    // Register cors plugin
+const corsPlugin = fp(async (app: FastifyInstance) => {
     await app.register(cors, {
         origin: '*',
         methods: ['GET', 'PUT', 'POST', 'DELETE', 'OPTIONS', 'PATCH'],
@@ -13,4 +13,6 @@ export default async function corsPlugin(app: FastifyInstance) {
         preflightContinue: false,
         optionsSuccessStatus: 204
     });
-};
+})
+
+export default corsPlugin;

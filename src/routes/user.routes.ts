@@ -1,6 +1,7 @@
 import { FastifyInstance } from 'fastify';
+import fp from 'fastify-plugin';
 
-export default async function userRoutes(fastify: FastifyInstance) {
+const userRoutes = fp(async (fastify: FastifyInstance) => {
     // Ví dụ về một route có schema
     fastify.get('/users', {
         schema: {
@@ -24,4 +25,6 @@ export default async function userRoutes(fastify: FastifyInstance) {
         // xử lý logic lấy danh sách người dùng
         return [{ id: 1, name: 'User 1', email: 'user1@example.com' }];
     });
-}
+});
+
+export default userRoutes;

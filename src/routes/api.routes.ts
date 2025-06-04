@@ -1,6 +1,7 @@
 import { FastifyInstance } from 'fastify';
+import fp from 'fastify-plugin';
 
-export default async function apiRoutes(app: FastifyInstance) {
+const apiRoutes = fp(async (app: FastifyInstance) => {
     app.get('/public', async (request, reply) => {
         return { message: 'This is a public endpoint' };
     });
@@ -8,4 +9,6 @@ export default async function apiRoutes(app: FastifyInstance) {
     app.get('/protected', async (request, reply) => {
         return { message: 'This is a protected endpoint', secret: 'Some sensitive data' };
     });
-}
+});
+
+export default apiRoutes;
